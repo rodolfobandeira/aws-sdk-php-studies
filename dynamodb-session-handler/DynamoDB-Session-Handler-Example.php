@@ -1,15 +1,11 @@
 <?php
 
-require 'vendor/autoload.php';
+require '../vendor/autoload.php';
 
 use Aws\DynamoDb\SessionHandler;
 
-$sessionHandler = SessionHandler::fromClient($dynamoDb, [
-        'table_name' => 'sessions'
-        ]);
-
+$sessionHandler = SessionHandler::fromClient($dynamoDb, ['table_name' => 'sessions']);
 $sessionHandler->register();
-
 
 // Start the session
 session_start();
@@ -20,4 +16,3 @@ $_SESSION['user.role'] = 'it';
 
 // Close the session (optional, but recommended)
 session_write_close();
-
